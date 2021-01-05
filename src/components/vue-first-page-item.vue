@@ -10,7 +10,7 @@
               params: { contact: contact[item.id - 1] },
             }"
             class="edit__link"
-            >edit</router-link
+            >Info</router-link
           >
         </button>
         <button class="remove" @click="$emit('removeContact', item.id)">
@@ -51,7 +51,6 @@ export default {
     text-align: center;
     border: 1px solid black;
     text-decoration: none;
-    margin: 0px auto;
     transition: 0.3s;
     &:hover {
       outline: none;
@@ -85,5 +84,6 @@ li {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 7px 7px #e7e7e7, -7px 0px 7px #e7e7e7;
+  margin-right: 40px;
 }
 </style>

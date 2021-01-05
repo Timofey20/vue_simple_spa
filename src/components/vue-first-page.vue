@@ -1,5 +1,6 @@
 <template>
   <div class="vue-first-page">
+    <div class="create"></div>
     <div class="create_contact">
       <span>Enter name</span>
       <input type="text" v-model="newName" />
@@ -11,7 +12,6 @@
       <vue-first-page-item
         :contact="contact"
         @removeContact="removeContact"
-        @editContact="editContact"
       ></vue-first-page-item>
     </ul>
     <div v-if="contact.length === 0">Закончились контакты</div>
@@ -27,21 +27,23 @@ export default {
         { name: "Dan", number: 893421044454, id: 2 },
         { name: "Gren", number: 893426674284, id: 3 },
       ],
-      ldkas: [],
       newId: null,
       newName: "",
       newNumber: "",
+      confirmation: false,
+      confirmathion_chose: true,
     };
   },
-  computed: {},
   methods: {
     removeContact(id) {
-      this.contact = this.contact.filter((b) => b.id !== id);
-    },
-    editContact(id) {
-      // this.contact = this.contact.filter((b) => b.id !== id);
+      if (confirm("Удалить?") == true) {
+        this.contact = this.contact.filter((b) => b.id !== id);
+      }
     },
     addContact() {
+      if (this.newName.trim() == "" || this.newNumber.trim() == "") {
+        return 0;
+      }
       const User = {
         id: this.newId++,
         name: this.newName,
@@ -69,6 +71,8 @@ export default {
   display: block;
   margin: 0.5rem 2rem;
   padding: 0.5rem 2rem;
+  padding-top: 40px;
+  margin-top: 0;
   & input {
     margin-right: 40px;
   }
@@ -77,7 +81,6 @@ export default {
   }
 }
 .addContact {
-  margin-right: 50px;
   border-radius: 5px;
   background-color: green;
   color: white;
@@ -90,6 +93,11 @@ export default {
     outline: none;
     color: green;
     background-color: #fff;
+  }
+}
+input {
+  &:focus {
+    outline: none;
   }
 }
 </style>
